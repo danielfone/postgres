@@ -618,7 +618,7 @@ _crypt_blowfish_rn(const char *key, const char *setting,
 
 	if (setting[0] != '$' ||
 		setting[1] != '2' ||
-		(setting[2] != 'a' && setting[2] != 'x') ||
+		(setting[2] != 'a' && setting[2] != 'b' && setting[2] != 'x') ||
 		setting[3] != '$' ||
 		setting[4] < '0' || setting[4] > '3' ||
 		setting[5] < '0' || setting[5] > '9' ||
