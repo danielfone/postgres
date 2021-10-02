@@ -784,9 +784,9 @@ BF_crypt(const char *key, const char *setting,
 
 	do
 	{
-		CHECK_FOR_INTERRUPTS();
+		int done;
 
-		int			done;
+		CHECK_FOR_INTERRUPTS();
 
 		for (i = 0; i < BF_N + 2; i += 2)
 		{
@@ -894,8 +894,7 @@ _crypt_blowfish_rn(const char *key, const char *setting,
 	const char *test_hash = test_hashes[0];
 	char	   *retval;
 	const char *p;
-	int			save_errno,
-				ok;
+	int			ok;
 	struct
 	{
 		char		s[7 + 22 + 1];
@@ -905,7 +904,6 @@ _crypt_blowfish_rn(const char *key, const char *setting,
 /* Hash the supplied password */
 	_crypt_output_magic(setting, output, size);
 	retval = BF_crypt(key, setting, output, size, 16);
-	save_errno = errno;
 
 /*
  * Do a quick self-test.  It is important that we make both calls to BF_crypt()
